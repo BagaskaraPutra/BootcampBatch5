@@ -17,7 +17,7 @@ public class Cat
 	
 	public void Meow()
 	{
-		Console.WriteLine($"{_name} is meowing ...");
+		Console.WriteLine($"{_name} is meowing ... (MEOW)");
 	}
 	
 	public void Jump()
@@ -36,6 +36,6 @@ public class Cat
 		{
 			_stripedStr = "not a striped cat";
 		}
-		Console.WriteLine($"My name is {_name}. I am {_gender} cat. I am {_stripedStr} and and I am {_age} years old.");
+		Console.WriteLine($"My name is {_name}. I am {_gender} cat. I am {_stripedStr} and I am {_age} years old.");
 	}
 }
