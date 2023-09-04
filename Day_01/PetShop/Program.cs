@@ -1,10 +1,9 @@
 ﻿using HewanAir;
 using HewanDarat;
-class Program
 
+class Program
 {
 	static  void Main()
-	
 	{
 		Cat burhan = new Cat();
 		Cat cibi = new Cat();

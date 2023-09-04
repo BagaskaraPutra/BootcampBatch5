@@ -7,13 +7,11 @@ public class Cat
 	public bool isStripe;
 	
 	public void Meow()
-	
 	{
 		Console.WriteLine("Meow");
 	}
 	
 	public void Jump()
-	
 	{
 		Console.WriteLine("Jump");
 	}

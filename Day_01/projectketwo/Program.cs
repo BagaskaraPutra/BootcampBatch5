@@ -1,9 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿// Default Namespace: Global Namespace
 class Program
-
 {
 	static void Main()
-
 	{
 		Console.WriteLine("Hello, ketwo World!");
 	}
