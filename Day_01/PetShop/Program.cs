@@ -5,14 +5,14 @@ class Program
 {
 	static  void Main()
 	{
-		Cat burhan = new Cat();
-		Cat cibi = new Cat();
+		Cat burhan = new Cat("Burhan", "male", 2, true);
+		Cat cibi = new Cat("Cibi", "female", 3, false);
 		Fish ikan = new Fish("Nemo");
-		burhan.name = "Burhan";
-		cibi.name = "Cibi";
 		
-		Console.WriteLine(burhan.name);
-		Console.WriteLine(cibi.name);
+		burhan.PrintProperty();
+		cibi.PrintProperty();
+		burhan.Meow();
+		cibi.Jump();
 		Console.WriteLine(ikan.GetName());
 	}
 }
