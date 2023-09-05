@@ -2,26 +2,12 @@ namespace Auto;
 
 public class Car
 {
-	// private IEngine _engine;
 	private IInternalCombustionEngine _internalCombustionEngine;
 	private IElectricEngine _electricEngine;
 	private Tire _tire;
 	private string _brandName;
 	
 	// Polymorphism: Constructor overloading (same name, different parameters)
-	// public Car(string brandName, IEngine engine)
-	// {
-	// 	this._brandName = brandName;
-	// 	this._engine = engine;
-	// }
-	
-	// public Car(string brandName, IEngine engine, Tire tire)
-	// {
-	// 	this._brandName = brandName;
-	// 	this._engine = engine;
-	// 	this._tire = tire;
-	// }
-	
 	public Car(string brandName, IInternalCombustionEngine engine, Tire tire)
 	{
 		this._brandName = brandName;

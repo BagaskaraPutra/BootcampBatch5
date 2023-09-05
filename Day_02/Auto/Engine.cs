@@ -1,5 +1,22 @@
 namespace Auto;
 
+public interface IEngine 
+{
+	// automatically set to public due to interface
+	void EngineRun(); 
+}
+
+// IInternalCombustionEngine interface inherits from IEngine interface
+public interface IInternalCombustionEngine : IEngine
+{
+	int CheckCylinders();
+}
+
+public interface IElectricEngine : IEngine
+{
+	double CheckVoltage();
+}
+
 class Engine
 {
 	// protected access modifier: only this class and its childs can access it
@@ -18,22 +35,7 @@ class Engine
 	}
 }
 
-public interface IEngine 
-{
-	// automatically set to public due to interface
-	void EngineRun(); 
-}
-
-public interface IInternalCombustionEngine : IEngine
-{
-	int CheckCylinders();
-}
-
-public interface IElectricEngine : IEngine
-{
-	double CheckVoltage();
-}
-
+// InternalCombustionEngine class inherits from the Engine class
 class InternalCombustionEngine : Engine
 {
 	protected int _cylinders;
@@ -49,7 +51,7 @@ class InternalCombustionEngine : Engine
 	}
 }
 
-// PetrolEngine inherits from the Engine class and implements the IEngine interface
+// PetrolEngine inherits from the InternalCombustionEngine class and implements the IInternalCombustionEngine interface
 class PetrolEngine : InternalCombustionEngine, IInternalCombustionEngine
 {
 	public PetrolEngine(string brandName, string fuelType, int cylinders) 
@@ -69,11 +71,11 @@ class DieselEngine : InternalCombustionEngine, IInternalCombustionEngine
 	{}	
 	public void EngineRun()
 	{
-		Console.WriteLine("Diesel Engine Running");
+		Console.WriteLine("Diesel Engine Running ...");
 	}
 }
 
-class ElectricEngine : Engine, IEngine, IElectricEngine
+class ElectricEngine : Engine, IElectricEngine
 {
 	private double _voltage;
 	
