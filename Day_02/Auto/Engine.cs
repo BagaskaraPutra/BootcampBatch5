@@ -1,6 +1,6 @@
 namespace Auto;
 
-public class Engine
+class Engine
 {
 	// protected access modifier: only this class and its childs can access it
 	protected string _brandName;
@@ -24,52 +24,71 @@ public interface IEngine
 	void EngineRun(); 
 }
 
-public interface ICylinderEngine
+public interface IInternalCombustionEngine : IEngine
 {
 	int CheckCylinders();
 }
 
-public interface IElectricEngine
+public interface IElectricEngine : IEngine
 {
-	int CheckVoltage();
+	double CheckVoltage();
 }
 
-// PistonEngine inherits from the Engine class and implements the IEngine interface
-public class PistonEngine : Engine, IEngine, ICylinderEngine
+class InternalCombustionEngine : Engine
 {
-	private int _cylinders;
-	
-	public PistonEngine(string brandName, string fuelType, int cylinders) 
+	protected int _cylinders;
+
+	public InternalCombustionEngine(string brandName, string fuelType, int cylinders) 
 		: base(brandName, fuelType)
 	{
 		this._cylinders = cylinders;
 	}
-	
-	public void EngineRun()
-	{
-		Console.WriteLine("Piston Engine Running");
-	}
-	
 	public int CheckCylinders()
 	{
 		return this._cylinders;
 	}
 }
 
-
-class DieselEngine : IEngine
+// PetrolEngine inherits from the Engine class and implements the IEngine interface
+class PetrolEngine : InternalCombustionEngine, IInternalCombustionEngine
 {
+	public PetrolEngine(string brandName, string fuelType, int cylinders) 
+		: base(brandName, fuelType, cylinders)
+	{}
+	public void EngineRun()
+	{
+		Console.WriteLine("Petrol Engine Running ...");
+	}
+}
+
+
+class DieselEngine : InternalCombustionEngine, IInternalCombustionEngine
+{
+	public DieselEngine(string brandName, string fuelType, int cylinders) 
+		: base(brandName, fuelType, cylinders)
+	{}	
 	public void EngineRun()
 	{
 		Console.WriteLine("Diesel Engine Running");
 	}
 }
 
-class ElectricEngine : IEngine
+class ElectricEngine : Engine, IEngine, IElectricEngine
 {
+	private double _voltage;
+	
+	public ElectricEngine(string brandName, string fuelType, double voltage)
+		: base(brandName, fuelType)
+	{
+		this._voltage = voltage;
+	}
 	public void EngineRun()
 	{
-		Console.WriteLine("Electric Engine Run");
+		Console.WriteLine("Electric Engine Running ...");
+	}
+	public double CheckVoltage()
+	{
+		return this._voltage;
 	}
 }
 
@@ -77,7 +96,7 @@ class HydrogenEngine : IEngine
 {
 	public void EngineRun() 
 	{
-		Console.WriteLine("Hydrogen Engine Run");
+		Console.WriteLine("Hydrogen Engine Running ...");
 	}
 }
 
@@ -85,7 +104,7 @@ class HamsterEngine : IEngine
 {
 	public void EngineRun()
 	{
-		Console.WriteLine("Hamster Engine Run");
+		Console.WriteLine("Hamster Engine Running ...");
 	}
 	public void GiveHamsterFood()
 	{
