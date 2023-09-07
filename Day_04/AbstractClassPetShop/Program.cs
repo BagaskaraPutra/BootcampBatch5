@@ -8,8 +8,8 @@ class Program
 		Fish nemo = new Fish("Nemo", "male", 1);
 		Animal animal = new Animal();
 		
-		Console.WriteLine(animal.GetAllAnimalNames());
-		Console.WriteLine(cibi.GetAllAnimalNames());
+		Console.WriteLine(animal.GetAllAnimalNames()); // Cibi Heli Nemo
+		Console.WriteLine(cibi.GetAllAnimalNames()); // Cibi Heli Nemo
 		
 		cibi.WakeUp();
 		Console.WriteLine(cibi.GetAwakeStatus()); // True
@@ -24,10 +24,16 @@ class Program
 		// because Eat() from the AbstractAnimal abstract class is overriden in the Animal class
 		
 		animal.AllSleep();
+		
 		Console.WriteLine($"Cibi AllAwake status: {cibi.GetAllAwakeStatus()}"); // False
 		Console.WriteLine($"Heli AllAwake status: {heli.GetAllAwakeStatus()}"); // False
+		
 		Console.WriteLine($"Cibi awake status: {cibi.GetAwakeStatus()}"); // Should be False, but why still True?
 		Console.WriteLine($"Heli awake status: {heli.GetAwakeStatus()}"); // Should be False, but why still True?
+		// Answer: Because animal, cibi, heli, and nemo objects are all different objects.
+		// Even though _isAwake is static, it is only in its objects.
+		// How to solve it?
+		// TODO: Using delegates
 		
 		animal.AllWakeUp();
 		Console.WriteLine($"Nemo AllAwake status: {nemo.GetAllAwakeStatus()}"); // True
