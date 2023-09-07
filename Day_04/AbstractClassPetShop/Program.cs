@@ -3,10 +3,17 @@ class Program
 {
 	static void Main()
 	{
-		Cat cibi = new Cat("Cibi", "female", 3, false);
-		Dog heli = new Dog("Heli", "male", 2, "kintamani");
-		Fish nemo = new Fish("Nemo", "male", 1);
 		Animal animal = new Animal();
+		Console.WriteLine(animal.GetAllAnimalNames()); // ""
+		
+		Cat cibi = new Cat("Cibi", "female", 3, false);
+		Console.WriteLine(cibi.GetAllAnimalNames()); // Cibi
+		
+		Dog heli = new Dog("Heli", "male", 2, "kintamani");
+		Console.WriteLine(heli.GetAllAnimalNames()); // Cibi Heli
+		
+		Fish nemo = new Fish("Nemo", "male", 1);
+		Console.WriteLine(nemo.GetAllAnimalNames()); // Cibi Heli Nemo
 		
 		Console.WriteLine(animal.GetAllAnimalNames()); // Cibi Heli Nemo
 		Console.WriteLine(cibi.GetAllAnimalNames()); // Cibi Heli Nemo
@@ -35,7 +42,16 @@ class Program
 		// How to solve it?
 		// TODO: Using delegates
 		
+		cibi.Sleep();
+		Console.WriteLine($"Cibi awake status: {cibi.GetAwakeStatus()}"); // False
+		Console.WriteLine($"Heli awake status: {heli.GetAwakeStatus()}"); // True
+		Console.WriteLine($"Nemo awake status: {nemo.GetAwakeStatus()}"); // False
+		
 		animal.AllWakeUp();
 		Console.WriteLine($"Nemo AllAwake status: {nemo.GetAllAwakeStatus()}"); // True
+		
+		cibi.MakeSound(); // Meow !!!
+		heli.MakeSound(); // Woof !!!
+		nemo.MakeSound(); // Abstract Animal Make Sound
 	}
 }
