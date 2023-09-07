@@ -1,8 +1,11 @@
+using System.Text;
+
 namespace AbstractClassPetShop;
 
 class Animal : AbstractAnimal
 {
 	protected bool _isAwake;
+	protected static StringBuilder? _sbAllAnimalNames = new StringBuilder();
 	
 	public Animal()
 	{}
@@ -11,6 +14,9 @@ class Animal : AbstractAnimal
 		this._name 		= name;
 		this._gender 	= gender;
 		this._age 		= age;
+		// _sbAllAnimalNames = new StringBuilder(name);
+		_sbAllAnimalNames.Append(name);
+		_sbAllAnimalNames.Append(" ");
 	}
 	
 	// Distinct individual objects' methods
@@ -40,5 +46,10 @@ class Animal : AbstractAnimal
 	public bool GetAllAwakeStatus()
 	{
 		return _allIsAwake;
+	}
+	
+	public StringBuilder GetAllAnimalNames()
+	{
+		return _sbAllAnimalNames;
 	}
 }
