@@ -2,12 +2,8 @@ namespace AbstractClassPetShop;
 
 class Fish : Animal
 {
-	public Fish(string name, string gender, int age)
-		: base(name, gender, age)
+	public Fish(string name, string gender, int age, float bodyWeight)
+		: base(name, gender, age, bodyWeight)
 	{
-	}
-	public new void Eat()
-	{
-		Console.WriteLine("Fish is eating ...");
 	}
 }
