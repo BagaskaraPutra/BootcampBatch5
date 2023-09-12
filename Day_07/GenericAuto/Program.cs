@@ -9,21 +9,21 @@ class Program
 		Tire bridgestone = new Tire("Bridgestone", 40);
 		Tire goodyear = new Tire("Goodyear", 45);
 		
-		Car honda = new Car("Honda", vtec, bridgestone);
-		Car toyota = new Car("Toyota", kdToyota, goodyear);
-		Car tesla = new Car("Tesla", electricEngine, bridgestone);
+		Car<PetrolEngine> honda = new Car<PetrolEngine>("Honda", vtec, bridgestone);
+		Car<DieselEngine> toyota = new Car<DieselEngine>("Toyota", kdToyota, goodyear);
+		Car<ElectricEngine> tesla = new Car<ElectricEngine>("Tesla", electricEngine, bridgestone);
 		
 		
-		Console.WriteLine(honda.CheckBrandName() + " internal combustion engine object: " + honda.CheckICEngine());
-		Console.WriteLine(toyota.CheckBrandName() + " internal combustion engine object: " + toyota.CheckICEngine());
-		Console.WriteLine(tesla.CheckBrandName() + " electric engine object: " + tesla.CheckElectricEngine());
+		Console.WriteLine(honda.CheckBrandName() + " engine object: " + honda.CheckEngine());
+		Console.WriteLine(toyota.CheckBrandName() + " engine object: " + toyota.CheckEngine());
+		Console.WriteLine(tesla.CheckBrandName() + " engine object: " + tesla.CheckEngine());
 		
-		honda.CheckICEngine().EngineRun();
-		toyota.CheckICEngine().EngineRun();
-		tesla.CheckElectricEngine().EngineRun();
+		honda.CheckEngine().EngineRun();
+		toyota.CheckEngine().EngineRun();
+		tesla.CheckEngine().EngineRun();
 		
-		Console.WriteLine(honda.CheckBrandName() + " number of cylinders: " + honda.CheckICEngine().CheckCylinders());
-		Console.WriteLine(toyota.CheckBrandName() + " number of cylinders: " + toyota.CheckICEngine().CheckCylinders());
-		Console.WriteLine(tesla.CheckBrandName() + " voltage: " + tesla.CheckElectricEngine().CheckVoltage());
+		Console.WriteLine(honda.CheckBrandName() + " number of cylinders: " + honda.CheckEngine().CheckCylinders());
+		Console.WriteLine(toyota.CheckBrandName() + " number of cylinders: " + toyota.CheckEngine().CheckCylinders());
+		Console.WriteLine(tesla.CheckBrandName() + " voltage: " + tesla.CheckEngine().CheckVoltage());
 	}
 }

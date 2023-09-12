@@ -1,35 +1,21 @@
 namespace Auto;
 
-public class Car
+public class Car <TEngine> where TEngine: class
 {
-	private IInternalCombustionEngine _internalCombustionEngine;
-	private IElectricEngine _electricEngine;
+	private TEngine _engine;
 	private Tire _tire;
 	private string _brandName;
 	
-	// Polymorphism: Constructor overloading (same name, different parameters)
-	public Car(string brandName, IInternalCombustionEngine engine, Tire tire)
+	public Car(string brandName, TEngine engine, Tire tire)
 	{
 		this._brandName = brandName;
-		this._internalCombustionEngine = engine;
+		this._engine = engine;
 		this._tire = tire;
 	}		
 	
-	public Car(string brandName, IElectricEngine engine, Tire tire)
+	public TEngine CheckEngine()
 	{
-		this._brandName = brandName;
-		this._electricEngine = engine;
-		this._tire = tire;
-	}
-
-	public IInternalCombustionEngine CheckICEngine()
-	{
-		return this._internalCombustionEngine;
-	}
-	
-	public IElectricEngine CheckElectricEngine()
-	{
-		return this._electricEngine;
+		return this._engine;
 	}
 
 	public string CheckBrandName()
