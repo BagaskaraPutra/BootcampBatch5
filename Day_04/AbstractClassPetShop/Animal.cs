@@ -14,7 +14,7 @@ class Animal : AbstractAnimal
 		this._name 		= name;
 		this._gender 	= gender;
 		this._age 		= age;
-		this._bodyWeight = bodyWeight;
+		this._bodyMass = bodyWeight;
 		_sbAllAnimalNames.Append(name);
 		_sbAllAnimalNames.Append(" ");
 	}
@@ -53,17 +53,17 @@ class Animal : AbstractAnimal
 		return _sbAllAnimalNames;
 	}
 
-	public override float GetBodyWeight()
+	public override float GetBodyMass()
 	{
-		return this._bodyWeight;
+		return this._bodyMass;
 	}
-	public override void Eat(float _foodWeight)
+	public override void Eat(float foodWeight, UnitMass unit)
 	{
 		var className = GetType().Name;
-		if (_foodWeight > 0)
+		if (foodWeight > 0)
 		{
-			this._bodyWeight += 0.001f*_foodWeight;
-			Console.WriteLine($"{className} is eating {_foodWeight} grams of food ...");
+			this._bodyMass += (float) (Math.Pow(10,-(double)unit) * foodWeight);
+			Console.WriteLine($"{className} is eating {foodWeight} {unit.ToString()} of food ...");
 		}
 		else
 		{

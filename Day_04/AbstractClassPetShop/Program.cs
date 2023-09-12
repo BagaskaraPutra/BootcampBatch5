@@ -76,11 +76,12 @@ class Program
 		heli.MakeSound(); // Woof !!!
 		nemo.MakeSound(); // Abstract Animal Make Sound
 		
-		cibi.Eat(500);
-		Console.WriteLine(cibi.GetBodyWeight());
-		cibi.Eat(-200);
+		cibi.Eat(500, Animal.UnitMass.g);
+		cibi.Eat(1, Animal.UnitMass.kg);
+		Console.WriteLine(cibi.GetBodyMass());
+		cibi.Eat(-200, Animal.UnitMass.g);
 		
-		nemo.Eat(100);
-		Console.WriteLine(nemo.GetBodyWeight());
+		nemo.Eat(100, Animal.UnitMass.g);
+		Console.WriteLine(nemo.GetBodyMass());
 	}
 }
