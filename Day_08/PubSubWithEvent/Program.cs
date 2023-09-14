@@ -6,21 +6,26 @@ class Program
 {
 	static void Main()
 	{
-		Youtuber dfYT = new("Dirty Frank");
-		Youtuber myYT = new("Mr. Yeast");
+		Youtuber oldYT = new("Dirty Frank");
+		Youtuber newYT = new("Mr. Yeast");
 		
 		AnonymousSubscriber<EventArgs> anonSub = new AnonymousSubscriber<EventArgs>();
-		DetailedSubscriber<EventData> someSub = new DetailedSubscriber<EventData>("First Viewer");
+		DetailedSubscriber<EventData> detailSub = new DetailedSubscriber<EventData>("First Viewer");
 
-		dfYT.AddSubscriber(anonSub.Notification);
-		dfYT.UploadVideo();
-		//dfYT.subscriber = null; You cant assign '=' for event delegate
-		dfYT.UploadVideo();
+		oldYT.AddSubscriber(anonSub.Notification);
+		oldYT.AddSubscriber(detailSub.Notification);
 		
-		myYT.AddSubscriber(anonSub.Notification);
-		myYT.UploadVideo();
+		newYT.AddSubscriber(detailSub.Notification);
+		newYT.AddSubscriber(anonSub.Notification);
 		
-		dfYT.EventClear();
-		dfYT.UploadVideo();
+		oldYT.UploadVideo();
+		//oldYT.subscriber = null; You can't assign '=' for event delegate
+		newYT.UploadVideo();
+		
+		newYT.RemoveSubscriber(anonSub.Notification);
+		newYT.UploadVideo();
+		
+		oldYT.EventClear();
+		oldYT.UploadVideo();
 	}
 }

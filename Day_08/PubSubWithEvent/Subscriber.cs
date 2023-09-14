@@ -9,7 +9,7 @@ public class AnonymousSubscriber <TEvent>: ISubscriber<TEvent>
 {
 	public void Notification(object sender, TEvent e)
 	{
-		Console.WriteLine($"Get message from Youtuber {sender}");
+		Console.WriteLine($"Got message from Youtuber {sender}");
 	}
 }
 public class DetailedSubscriber <TEvent>: ISubscriber<TEvent>
@@ -22,6 +22,6 @@ where TEvent: EventData
 	}
 	public void Notification(object sender, TEvent e)
 	{
-		Console.WriteLine($"{this._name} received notification from YouTuber {sender} {e.id}: {e.message}");
+		Console.WriteLine($"{this._name} received notification from YouTuber {sender} [ID: {e.id}]: {e.message}");
 	}
 }
