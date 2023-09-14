@@ -12,11 +12,13 @@ public class Person
 class Program
 {
 	//Our delegate
-	// public delegate bool FilterDelegate(Person p); // original
+	// public delegate bool FilterDelegate(Person p); // original delegate
 	
 	static void Main(string[] args)
 	{
-		Func<Person,bool> FilterDelegate; // added
+		// Func<Person,bool> FilterDelegate; // in fact, you don't need to declare this
+		// Just make sure the type passed into DisplayPeople(tring title, List<Person> people, Func<Person,bool> filter)
+		// is the same as FilterDelegate
 		
 		//Create 4 Person objects
 		Person p1 = new Person() { Name = "John", Age = 41 };
@@ -41,7 +43,7 @@ class Program
 	/// <param name="filter">A filter</param>
 	/// <returns>A filtered list</returns>
 	
-	// static void DisplayPeople(string title, List<Person> people, FilterDelegate filter)
+	// static void DisplayPeople(string title, List<Person> people, FilterDelegate filter) // original delegate
 	static void DisplayPeople(string title, List<Person> people, Func<Person,bool> filter)
 	{
 		
