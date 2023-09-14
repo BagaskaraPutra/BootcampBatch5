@@ -32,6 +32,12 @@ class Program
 		DisplayPeople("Children:", people, IsChild);
 		DisplayPeople("Adults:", people, IsAdult);
 		DisplayPeople("Seniors:", people, IsSenior);
+		
+		// But what if I want to pass the Is{Category} functions simultaneously into a Func?
+		Func<Person,bool> FilterAgeFunc = DisplayIsChild;
+		FilterAgeFunc += DisplayIsAdult;
+		FilterAgeFunc += DisplayIsSenior;
+		InvokePeople(people, FilterAgeFunc);
 
 		Console.Read();
 	}
@@ -60,6 +66,24 @@ class Program
 		Console.Write("\n\n");
 	}
 
+		
+	static void InvokePeople(List<Person> people, Func<Person,bool> filter)
+	{
+		foreach (Person p in people)
+		{
+			Delegate[] dels = filter.GetInvocationList();
+			foreach (Func<Person,bool> f in dels)
+			{
+				if (f(p))
+				{
+					Console.WriteLine("{0}, {1} years old", p.Name, p.Age);
+				}	
+			}
+		}
+
+		Console.Write("\n\n");
+	}
+	
 	//==========FILTERS===================
 	static bool IsChild(Person p)
 	{
@@ -74,6 +98,37 @@ class Program
 	static bool IsSenior(Person p)
 	{
 		return p.Age >= 65;
+	}
+	
+	//----CUSTOM FILTER----------------
+	static bool DisplayIsChild(Person p)
+	{
+		if (p.Age < 18)
+		{
+			Console.Write("Child: ");
+			return true;		
+		}
+		return false;
+	}
+
+	static bool DisplayIsAdult(Person p)
+	{
+		if (p.Age >= 18)
+		{
+			Console.Write("Adult: ");
+			return true;	
+		}
+		return false;
+	}
+
+	static bool DisplayIsSenior(Person p)
+	{
+		if (p.Age >= 65)
+		{
+			Console.Write("Senior: ");
+			return true;		
+		}
+		return false;
 	}
 }
 
