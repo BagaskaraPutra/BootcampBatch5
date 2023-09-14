@@ -55,32 +55,25 @@ class Program
 		animal.Eat(); // Animal is eating...
 		// because Eat() from the AbstractAnimal abstract class is overriden in the Animal class
 		
-		// Try to make all animal objects go to sleep
-		animal.AllSleep();
-		Console.WriteLine($"Cibi awake status: {cibi.GetAwakeStatus()}"); // Should be False, but why still True?
-		Console.WriteLine($"Heli awake status: {heli.GetAwakeStatus()}"); // Should be False, but why still True?
-		// Answer: Because animal, cibi, heli, and nemo objects are all different objects.
-		// Even though _isAwake is static, it is only in its objects.
-		// How to solve it?
-		// TODO: Using delegates
-		
 		// Using delegate to make all animal objects go to sleep
 		WakeSleepDelegate AllSleep = cibi.Sleep;
 		AllSleep += heli.Sleep;
 		AllSleep += nemo.Sleep;
 		AllSleep.Invoke();
 		
-		Console.WriteLine($"Cibi awake status: {cibi.GetAwakeStatus()}"); 
-		Console.WriteLine($"Heli awake status: {heli.GetAwakeStatus()}");
-		Console.WriteLine($"Nemo awake status: {nemo.GetAwakeStatus()}");
+		Console.WriteLine($"Cibi awake status: {cibi.GetAwakeStatus()}"); // False
+		Console.WriteLine($"Heli awake status: {heli.GetAwakeStatus()}"); // False
+		Console.WriteLine($"Nemo awake status: {nemo.GetAwakeStatus()}"); // False
 		
-		// cibi.Sleep();
-		// Console.WriteLine($"Cibi awake status: {cibi.GetAwakeStatus()}"); // False
-		// Console.WriteLine($"Heli awake status: {heli.GetAwakeStatus()}"); // True
-		// Console.WriteLine($"Nemo awake status: {nemo.GetAwakeStatus()}"); // False
+		// Using delegate to make all animal objects wake up
+		WakeSleepDelegate AllWakeUp = cibi.WakeUp;
+		AllWakeUp += heli.WakeUp;
+		AllWakeUp += nemo.WakeUp;
+		AllWakeUp.Invoke();
 		
-		// animal.AllWakeUp();
-		// Console.WriteLine($"Nemo AllAwake status: {nemo.GetAllAwakeStatus()}"); // True
+		Console.WriteLine($"Cibi awake status: {cibi.GetAwakeStatus()}"); // True
+		Console.WriteLine($"Heli awake status: {heli.GetAwakeStatus()}"); // True
+		Console.WriteLine($"Nemo awake status: {nemo.GetAwakeStatus()}"); // True
 		
 		cibi.MakeSound(); // Meow !!!
 		heli.MakeSound(); // Woof !!!

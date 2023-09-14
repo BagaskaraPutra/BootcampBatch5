@@ -24,28 +24,17 @@ class Animal : AbstractAnimal
 	{
 		Console.WriteLine("Animal is eating ...");
 	}
-	public void WakeUp()
-	{
-		_isAwake = true; // || _allIsAwake;
-	}
 	public override void Sleep()
 	{
-		_isAwake = false; // && _allIsAwake;
+		_isAwake = false;
+	}
+	public override void WakeUp()
+	{
+		_isAwake = true;
 	}
 	public bool GetAwakeStatus()
 	{
 		return _isAwake;
-	}
-	
-	// Make all Animal instances go to sleep
-	public override void AllSleep()
-	{
-		_allIsAwake = false;
-		_isAwake = false;
-	}
-	public bool GetAllAwakeStatus()
-	{
-		return _allIsAwake;
 	}
 	
 	public StringBuilder GetAllAnimalNames()
