@@ -39,5 +39,16 @@
 		Console.WriteLine(currentInt);
 		iterator.MoveNext();
 		currentInt = iterator.Current;
+		
+		iterator.Reset();
+		Console.WriteLine("Iterating Forever using Enumerator: ");
+		while (iterator.MoveNext())
+		{
+			Console.WriteLine(iterator.Current);
+			if (iterator.Current == 3)
+			{
+				iterator.Reset();
+			}
+		}
 	}
 }
