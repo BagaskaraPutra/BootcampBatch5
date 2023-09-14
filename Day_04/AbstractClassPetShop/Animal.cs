@@ -26,11 +26,11 @@ class Animal : AbstractAnimal
 	}
 	public void WakeUp()
 	{
-		_isAwake = true || _allIsAwake;
+		_isAwake = true; // || _allIsAwake;
 	}
 	public override void Sleep()
 	{
-		_isAwake = false && _allIsAwake;
+		_isAwake = false; // && _allIsAwake;
 	}
 	public bool GetAwakeStatus()
 	{

@@ -1,4 +1,7 @@
 ﻿using AbstractClassPetShop;
+
+public delegate void WakeSleepDelegate();
+
 class Program
 {
 	static void Main()
@@ -54,8 +57,6 @@ class Program
 		
 		// Try to make all animal objects go to sleep
 		animal.AllSleep();
-		Console.WriteLine($"Cibi AllAwake status: {cibi.GetAllAwakeStatus()}"); // False
-		Console.WriteLine($"Heli AllAwake status: {heli.GetAllAwakeStatus()}"); // False
 		Console.WriteLine($"Cibi awake status: {cibi.GetAwakeStatus()}"); // Should be False, but why still True?
 		Console.WriteLine($"Heli awake status: {heli.GetAwakeStatus()}"); // Should be False, but why still True?
 		// Answer: Because animal, cibi, heli, and nemo objects are all different objects.
@@ -63,14 +64,23 @@ class Program
 		// How to solve it?
 		// TODO: Using delegates
 		
+		// Using delegate to make all animal objects go to sleep
+		WakeSleepDelegate AllSleep = cibi.Sleep;
+		AllSleep += heli.Sleep;
+		AllSleep += nemo.Sleep;
+		AllSleep.Invoke();
 		
-		cibi.Sleep();
-		Console.WriteLine($"Cibi awake status: {cibi.GetAwakeStatus()}"); // False
-		Console.WriteLine($"Heli awake status: {heli.GetAwakeStatus()}"); // True
-		Console.WriteLine($"Nemo awake status: {nemo.GetAwakeStatus()}"); // False
+		Console.WriteLine($"Cibi awake status: {cibi.GetAwakeStatus()}"); 
+		Console.WriteLine($"Heli awake status: {heli.GetAwakeStatus()}");
+		Console.WriteLine($"Nemo awake status: {nemo.GetAwakeStatus()}");
 		
-		animal.AllWakeUp();
-		Console.WriteLine($"Nemo AllAwake status: {nemo.GetAllAwakeStatus()}"); // True
+		// cibi.Sleep();
+		// Console.WriteLine($"Cibi awake status: {cibi.GetAwakeStatus()}"); // False
+		// Console.WriteLine($"Heli awake status: {heli.GetAwakeStatus()}"); // True
+		// Console.WriteLine($"Nemo awake status: {nemo.GetAwakeStatus()}"); // False
+		
+		// animal.AllWakeUp();
+		// Console.WriteLine($"Nemo AllAwake status: {nemo.GetAllAwakeStatus()}"); // True
 		
 		cibi.MakeSound(); // Meow !!!
 		heli.MakeSound(); // Woof !!!
