@@ -79,18 +79,7 @@ public class Program
 					}
 					else
 					{
-						int prevIndexOfComma = 0;
-						foreach (var indexOfComma in indexesOfComma)
-						{
-							if ((indexOfComma - prevIndexOfComma != 4) 
-								&& (prevIndexOfComma != 0))
-							{
-								Console.WriteLine("Invalid digit group index!");
-								break;
-							}
-							prevIndexOfComma = indexOfComma; 
-						}
-						dotDecimal = true;
+						dotDecimal = Helper.ValidateGroupIndex(indexesOfComma);
 					}
 				}
 				else
@@ -120,18 +109,7 @@ public class Program
 					}
 					else
 					{
-						int prevIndexOfDot = 0;
-						foreach (var indexOfDot in indexesOfDot)
-						{
-							if ((indexOfDot - prevIndexOfDot != 4) 
-								&& (prevIndexOfDot != 0))
-							{
-								Console.WriteLine("Invalid digit group index!");
-								break;
-							}
-							prevIndexOfDot = indexOfDot; 
-						}
-						dotDecimal = false;
+						dotDecimal = !Helper.ValidateGroupIndex(indexesOfDot);
 					}
 				}
 				else
@@ -189,6 +167,25 @@ public class Program
 			}
 		// } while (!status);
 		Console.WriteLine($"Your input number: {userDouble}");
+	}
+}
+
+public static class Helper
+{
+	public static bool ValidateGroupIndex(IEnumerable<int> indexesOfGroup)
+	{
+		int prevIndexOfGroup = 0;
+		foreach (var indexOfGroup in indexesOfGroup)
+		{
+			if ((indexOfGroup - prevIndexOfGroup != 4) 
+				&& (prevIndexOfGroup != 0))
+			{
+				Console.WriteLine("Invalid digit group index!");
+				break;
+			}
+			prevIndexOfGroup = indexOfGroup; 
+		}
+		return true;
 	}
 }
 
