@@ -13,6 +13,10 @@ public class Program
 		string[] words =
 			{ "the", "fox", "jumps", "over", "the", "dog" };
 		
+		// Create List<string> from string[]
+		List<string> sentenceL = new List<string>(words);
+		Display(sentenceL, "The list values:");
+		
 		// Create the link list.
 		LinkedList<string> sentenceLL = new LinkedList<string>(words);
 		Display(sentenceLL, "The linked list values:");
@@ -129,11 +133,11 @@ public class Program
 
 		Console.ReadLine();
 	}
-
-	private static void Display(LinkedList<string> words, string test)
+	
+	private static void Display<T>(IEnumerable<T> words, T test)
 	{
 		Console.WriteLine(test);
-		foreach (string word in words)
+		foreach (T word in words)
 		{
 			Console.Write(word + " ");
 		}
