@@ -17,6 +17,11 @@ public class Program
 		List<string> sentenceL = new List<string>(words);
 		Display(sentenceL, "The list values:");
 		
+		// Create HashSet<string> from string[]
+		HashSet<string> sentenceHS = new HashSet<string>(words);
+		Display(sentenceHS, "The hash set values:");
+		Console.WriteLine("Notice only one 'the' is present in the hash set");
+		
 		// Create the link list.
 		LinkedList<string> sentenceLL = new LinkedList<string>(words);
 		Display(sentenceLL, "The linked list values:");
