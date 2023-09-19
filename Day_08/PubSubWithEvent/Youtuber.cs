@@ -1,8 +1,15 @@
 ﻿namespace PubSubWithEvent;
 
+// public interface IYoutuber<TEvent>
+// {
+// 	public void UploadVideo();
+// 	public void SendNotification();
+// 	public bool AddSubscriber(TEvent sub);
+// }
+
 public class Youtuber 
 {
-	private EventHandler<EventData> _subscriber;
+	private EventHandler<EventData> _subscriber; // generic type EventHandler
 	private string _name;
 	private static int _id;
 	

@@ -1,47 +1,27 @@
 ﻿namespace PubSubWithEvent;
 
-public interface ISubscriber
+public interface ISubscriber<TEvent>
 {
-	void Notification(object sender, EventArgs e);
-	void Subscribe(Youtuber youtuber);
-	void Unsubscribe(Youtuber youtuber);
+	void Notification(object sender, TEvent e);
 }
 
-public class Subscriber: ISubscriber
+public class AnonymousSubscriber <TEvent>: ISubscriber<TEvent>
 {
-	public void Notification(object sender, EventArgs e)
+	public void Notification(object sender, TEvent e)
 	{
 		Console.WriteLine($"Got message from Youtuber {sender}");
 	}
-	public void Subscribe(Youtuber youtuber)
-	{
-		youtuber.AddSubscriber(Notification);
-	}
-	public void Unsubscribe(Youtuber youtuber)
-	{
-		youtuber.RemoveSubscriber(Notification);
-	}
 }
-public class AnonymousSubscriber: Subscriber
-{
-}
-public class DetailedSubscriber: Subscriber
+public class DetailedSubscriber <TEvent>: ISubscriber<TEvent>
+where TEvent: EventData
 {
 	private string _name;
 	public DetailedSubscriber(string name)
 	{
 		this._name = name;
 	}
-	public void Notification(object sender, EventData e)
+	public void Notification(object sender, TEvent e)
 	{
 		Console.WriteLine($"{this._name} received notification from YouTuber {sender} [ID: {e.id}]: {e.message}");
-	}
-	public new void Subscribe(Youtuber youtuber)
-	{
-		youtuber.AddSubscriber(this.Notification);	
-	}
-	public new void Unsubscribe(Youtuber youtuber)
-	{
-		youtuber.RemoveSubscriber(this.Notification);
 	}
 }
