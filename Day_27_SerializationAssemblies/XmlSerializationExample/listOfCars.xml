@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Car>
+    <year>4</year>
+    <brand>totoya2</brand>
+  </Car>
+  <Car>
+    <year>5</year>
+    <brand>mitsubishi</brand>
+  </Car>
+</ArrayOfCar>
